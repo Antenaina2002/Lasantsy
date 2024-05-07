@@ -11,10 +11,8 @@ import java.time.Instant;
 @Getter
 @Setter
 public class Product {
-
     private Long id;
     private String name;
     private double price;
     private Instant updatedAt = Instant.now();
-
 }
