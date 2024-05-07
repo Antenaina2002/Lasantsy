@@ -13,7 +13,7 @@ public class StationRepository implements GenericRepository<Station, Long> {
 
     @Override
     public Station save(Station entity) {
-        entity.setId(stations.keySet().stream().mapToLong(Long::longValue).max().orElse(0L) + 1); // Generate ID
+        entity.setId(stations.keySet().stream().mapToLong(Long::longValue).max().orElse(0L) + 1);
         stations.put(entity.getId(), entity);
         return entity;
     }
