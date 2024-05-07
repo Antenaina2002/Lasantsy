@@ -2,9 +2,11 @@ package org.lasantsy.lasantsy.service;
 
 import org.lasantsy.lasantsy.models.Product;
 import org.lasantsy.lasantsy.repository.ProductRepository;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class ProductService {
 
     private final ProductRepository productRepository;
