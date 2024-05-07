@@ -2,11 +2,10 @@ package org.lasantsy.lasantsy.service;
 
 import org.lasantsy.lasantsy.models.Product;
 import org.lasantsy.lasantsy.repository.ProductRepository;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.ComponentScan;
 
 import java.util.List;
 
-@Component
 public class ProductService {
 
     private final ProductRepository productRepository;
