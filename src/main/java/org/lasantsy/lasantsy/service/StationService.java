@@ -2,9 +2,11 @@ package org.lasantsy.lasantsy.service;
 
 import org.lasantsy.lasantsy.models.Station;
 import org.lasantsy.lasantsy.repository.StationRepository;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class StationService {
 
     private final StationRepository stationRepository;
