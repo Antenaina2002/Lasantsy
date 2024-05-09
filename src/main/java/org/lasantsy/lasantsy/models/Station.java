@@ -16,5 +16,5 @@ public class Station {
     private String longitude;
     private String latitude;
     private int employeeNumber;
-    private Instant updatedAt = Instant.now();
+
 }

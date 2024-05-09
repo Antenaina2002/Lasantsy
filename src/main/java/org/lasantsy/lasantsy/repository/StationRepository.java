@@ -1,40 +1,42 @@
 package org.lasantsy.lasantsy.repository;
 
+import org.lasantsy.lasantsy.db.DBConnection;
 import org.lasantsy.lasantsy.models.Station;
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class StationRepository implements GenericRepository<Station, Long> {
 
-    private final Map<Long, Station> stations = new ConcurrentHashMap<>();
+    private Connection connection;
 
-    @Override
-    public Station save(Station entity) {
-        entity.setId(stations.keySet().stream().mapToLong(Long::longValue).max().orElse(0L) + 1);
-        stations.put(entity.getId(), entity);
-        return entity;
+    public StationRepository() {
+        this.connection = DBConnection.get_connection();
     }
 
     @Override
-    public List<Station> findAll() {
-        return new ArrayList<>(stations.values());
+    public Station save(Station station) {
+        String sql = "insert into station (name, longitude, latitude, employee_number) VALUES (?,?,?,?);";
+        try (PreparedStatement prepared = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+            prepared.setString(1, station.getName());
+            prepared.setString(2, station.getLongitude());
+            prepared.setString(3, station.getLatitude());
+            prepared.setInt(4, station.getEmployeeNumber());
+            prepared.executeUpdate();
+
+            ResultSet generatedKeys = prepared.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                station.setId(generatedKeys.getLong(1));
+            } else {
+                throw new SQLException("Save failed");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return station;
     }
 
-    @Override
-    public Station findById(Long id) {
-        return stations.get(id);
-    }
-
-    @Override
-    public void delete(Station entity) {
-        stations.remove(entity.getId());
-    }
-
-    @Override
-    public void deleteById(Long id) {
-        stations.remove(id);
-    }
 }
