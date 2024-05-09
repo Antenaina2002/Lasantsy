@@ -61,4 +61,26 @@ public class StationRepository implements GenericRepository<Station, Long> {
         return resultList;
     }
 
+    @Override
+    public Station findById(Long id) {
+        String sql = "select * from station where id =?;";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setLong(1, id);
+            try (ResultSet result = statement.executeQuery()) {
+                if (result.next()) {
+                    return new Station(
+                            result.getLong("id"),
+                            result.getString("name"),
+                            result.getString("longitude"),
+                            result.getString("latitude"),
+                            result.getInt("employee_number")
+                    );
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
 }
