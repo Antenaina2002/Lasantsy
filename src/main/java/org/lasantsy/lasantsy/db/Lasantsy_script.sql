@@ -20,20 +20,20 @@ CREATE TABLE IF not exists product (
 
 CREATE TABLE IF not exists movement (
     id bigserial primary key,
-    stationId bigint not null references station(id),
-    productId bigint not null references product(id),
+    id_station bigint not null references station(id),
+    id_production bigint not null references product(id),
     value double precision not null,
     type varchar(50),
 );
 
 CREATE TABLE IF not exists evaporation_rate (
     id bigserial primary key,
-    stationId bigint not null references station(id),
+    id_station bigint not null references station(id),
     value double precision not null
 );
 
 CREATE TABLE IF not exists stock (
     id bigserial primary key,
-    stationId bigint not null references station(id),
+    id_station bigint not null references station(id),
     valeur double precision not null
 );

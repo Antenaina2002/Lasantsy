@@ -8,10 +8,9 @@ import java.time.Instant;
 @ToString(of = {"id", "station"})
 @Setter
 @Getter
+@AllArgsConstructor
 public class Stock {
     private Long id;
-    private Station station;
+    private Long idStation;
     private double value;
-    private Instant stockDatetime;
-    private Instant updatedAt = Instant.now();
 }

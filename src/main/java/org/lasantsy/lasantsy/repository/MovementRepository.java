@@ -79,7 +79,7 @@ public class MovementRepository implements GenericRepository<Movement, Long> {
                             result.getLong("id_product"),
                             result.getDouble("value"),
                             result.getString("type")
-                            );
+                    );
                 }
             }
         } catch (SQLException e) {
