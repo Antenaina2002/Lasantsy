@@ -9,12 +9,11 @@ import java.time.Instant;
 @ToString(of = {"id", "station", "product"})
 @Getter
 @Setter
+@AllArgsConstructor
 public class Movement {
     private Long id;
-    private Station station;
-    private Product product;
+    private Long idStation;
+    private Long idProduct;
     private double value;
     private String type;
-    private Instant movementDatetime;
-    private Instant updatedAt = Instant.now();
 }

@@ -19,7 +19,7 @@ public class ProductRepository implements GenericRepository<Product, Long> {
 
     @Override
     public Product save(Product product) {
-        String sql = "insert into product (name, longitude, latitude, employee_number) VALUES (?,?,?,?);";
+        String sql = "insert into product (name, price) VALUES (?,?);";
         try (PreparedStatement prepared = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             prepared.setString(1, product.getName());
             prepared.setDouble(2, product.getPrice());
