@@ -2,10 +2,6 @@ package org.lasantsy.lasantsy.repository;
 
 import org.lasantsy.lasantsy.db.DBConnection;
 import org.lasantsy.lasantsy.models.Movement;
-import org.lasantsy.lasantsy.models.Product;
-import org.lasantsy.lasantsy.models.Station;
-import org.lasantsy.lasantsy.service.ProductService;
-import org.lasantsy.lasantsy.service.StationService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

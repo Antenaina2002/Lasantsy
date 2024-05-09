@@ -1,7 +1,6 @@
 package org.lasantsy.lasantsy.repository;
 
 import org.lasantsy.lasantsy.db.DBConnection;
-import org.lasantsy.lasantsy.models.Movement;
 import org.lasantsy.lasantsy.models.Stock;
 
 import java.sql.Connection;
@@ -41,7 +40,7 @@ public class StockRepository implements GenericRepository<Stock, Long> {
 
     @Override
     public List<Stock> findAll() {
-        String sql = "select * from movement;";
+        String sql = "select * from stock;";
         List<Stock> resultList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             try (ResultSet result = statement.executeQuery()) {
@@ -61,7 +60,7 @@ public class StockRepository implements GenericRepository<Stock, Long> {
 
     @Override
     public Stock findById(Long id) {
-        String sql = "select * from movement where id =?;";
+        String sql = "select * from stock where id =?;";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setLong(1, id);
             try (ResultSet result = statement.executeQuery()) {
@@ -81,7 +80,7 @@ public class StockRepository implements GenericRepository<Stock, Long> {
 
     @Override
     public void delete(Stock stock) {
-        String sql = "delete from product where id =?;";
+        String sql = "delete from stock where id =?;";
         try (PreparedStatement prepared = connection.prepareStatement(sql)) {
             prepared.setLong(1, stock.getId());
             prepared.executeUpdate();
@@ -92,7 +91,7 @@ public class StockRepository implements GenericRepository<Stock, Long> {
 
     @Override
     public void deleteById(Long id) {
-        String sql = "delete from movement where id =?;";
+        String sql = "delete from stock where id =?;";
         try (PreparedStatement prepared = connection.prepareStatement(sql)) {
             prepared.setLong(1, id);
             prepared.executeUpdate();
