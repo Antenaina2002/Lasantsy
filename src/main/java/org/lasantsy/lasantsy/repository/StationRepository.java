@@ -39,4 +39,26 @@ public class StationRepository implements GenericRepository<Station, Long> {
         return station;
     }
 
+    @Override
+    public List<Station> findAll() {
+        String sql = "select * from station;";
+        List<Station> resultList = new ArrayList<>();
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            try (ResultSet result = statement.executeQuery()) {
+                while (result.next()) {
+                    resultList.add(new Station(
+                            result.getLong("id"),
+                            result.getString("name"),
+                            result.getString("longitude"),
+                            result.getString("latitude"),
+                            result.getInt("employee_number")
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return resultList;
+    }
+
 }
