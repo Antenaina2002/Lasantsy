@@ -94,4 +94,14 @@ public class StationRepository implements GenericRepository<Station, Long> {
         }
     }
 
+    @Override
+    public void deleteById(Long id) {
+        String sql = "delete from station where id =?;";
+        try (PreparedStatement prepared = connection.prepareStatement(sql)) {
+            prepared.setLong(1, id);
+            prepared.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
