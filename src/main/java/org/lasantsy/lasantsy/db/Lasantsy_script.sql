@@ -23,7 +23,7 @@ CREATE TABLE IF not exists movement (
     id_station bigint not null references station(id),
     id_production bigint not null references product(id),
     value double precision not null,
-    type varchar(50),
+    type varchar(50)
 );
 
 CREATE TABLE IF not exists evaporation_rate (

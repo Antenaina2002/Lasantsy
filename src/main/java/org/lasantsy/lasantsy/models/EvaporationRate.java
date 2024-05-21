@@ -1,7 +1,6 @@
 package org.lasantsy.lasantsy.models;
 
 import lombok.*;
-@Data
 @EqualsAndHashCode(of = "id")
 @ToString(of = {"id", "station"})
 @Getter
